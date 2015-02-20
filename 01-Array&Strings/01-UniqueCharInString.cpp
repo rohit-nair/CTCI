@@ -18,13 +18,13 @@ bool IsUnique(std::string str)
     return true;
 }
 
-//int main()
-//{
-//    std::string s = "sdfhjeruioqp";
-//    bool res = IsUnique(s);
-//    if (res)
-//        std::cout << "Unique string.\n";
-//    else
-//        std::cout << "Duplicate characters found in string.\n";
-//    return 0;
-//}
+int main()
+{
+    std::string s = "sdfhjeruioqp";
+    bool res = IsUnique(s);
+    if (res)
+        std::cout << "Unique string.\n";
+    else
+        std::cout << "Duplicate characters found in string.\n";
+    return 0;
+}

@@ -21,9 +21,9 @@ void compress(std::string extStr)
 }
 
 
-//int main()
-//{
-//    std::string str = "abbcccddddeeeeeffffffggggggg         ";
-//    compress(str);
-//    return 0;
-//}
+int main()
+{
+    std::string str = "abbcccddddeeeeeffffffggggggg         ";
+    compress(str);
+    return 0;
+}

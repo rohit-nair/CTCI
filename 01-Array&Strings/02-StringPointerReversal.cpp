@@ -24,13 +24,11 @@ void reverse(char* str)
         *str++ = *s;
         *s-- = temp;
     }
-
-    printf(foo);
 }
 
-//int main()
-//{
-//    std::string str = "This is a character string.";
-//    reverse(&str[0]);
-//    return 0;
-//}
+int main()
+{
+    std::string str = "This is a character string.";
+    reverse(&str[0]);
+    return 0;
+}

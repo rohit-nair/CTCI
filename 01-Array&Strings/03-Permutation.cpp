@@ -69,15 +69,15 @@ bool anagram(std::string s1, std::string s2)
     return true;
 }
 
-//int main()
-//{
-//    std::string s1 = "god";
-//    std::string s2 = "dog";
-//    bool res = anagram(s1, s2);
-//    if (res)
-//        printf("%s and %s strings are anagram.\n", s1.c_str(), s2.c_str());
-//    else
-//        printf("%s & %s strings are not anagrams.\n", s1.c_str(), s2.c_str());
-//
-//    return 0;
-//}
+int main()
+{
+    std::string s1 = "god";
+    std::string s2 = "dog";
+    bool res = anagram(s1, s2);
+    if (res)
+        printf("%s and %s strings are anagram.\n", s1.c_str(), s2.c_str());
+    else
+        printf("%s & %s strings are not anagrams.\n", s1.c_str(), s2.c_str());
+
+    return 0;
+}

@@ -41,27 +41,27 @@ void rotate(double img[][4], int rows)
     printMatrix(img, rows);
 }
 
-//int main()
-//{
-//    double img[4][4] = {0};
-//    int i = 0;
-//    int j = 0;
-//    int counter = 0;
-//    int rows = sizeof(img)/sizeof(img[0]);
-//    int columns = sizeof(img[0])/sizeof(img[0][0]);
-//    while (i < rows)
-//    {
-//        j = 0;
-//        while (j < columns)
-//        {
-//            double foo = rand() % 100 + 1;
-//            img[i][j] = counter; //foo/100;
-//            ++j;
-//            ++counter;
-//        }
-//        ++i;
-//    }
-//    printMatrix(img, rows);
-//    rotate(img, rows);
-//    return 0;
-//}
+int main()
+{
+    double img[4][4] = {0};
+    int i = 0;
+    int j = 0;
+    int counter = 0;
+    int rows = sizeof(img)/sizeof(img[0]);
+    int columns = sizeof(img[0])/sizeof(img[0][0]);
+    while (i < rows)
+    {
+        j = 0;
+        while (j < columns)
+        {
+            double foo = rand() % 100 + 1;
+            img[i][j] = counter; //foo/100;
+            ++j;
+            ++counter;
+        }
+        ++i;
+    }
+    printMatrix(img, rows);
+    rotate(img, rows);
+    return 0;
+}

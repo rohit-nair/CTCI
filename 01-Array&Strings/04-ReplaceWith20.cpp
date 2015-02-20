@@ -35,11 +35,11 @@ void replaceWith20(char *str)
     }
 }
 
-//int main()
-//{
-//    std::string str = "This is a string to replace.";
-//    char *strToReplace = &str[0];
-//    replaceWith20(strToReplace);
-//    std::cout << strToReplace;
-//    return 0;
-//}
+int main()
+{
+    std::string str = "This is a string to replace.";
+    char *strToReplace = &str[0];
+    replaceWith20(strToReplace);
+    std::cout << strToReplace;
+    return 0;
+}
