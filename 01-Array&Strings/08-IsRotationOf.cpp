@@ -2,7 +2,7 @@
 
 bool IsRotationOf(std::string a, std::string b)
 {
-    return a.find(b);
+    return a.find(b) != std::string::npos;
 }
 
 int main()
@@ -19,4 +19,6 @@ int main()
         printf("%s is a rotation of %s. \n", b.c_str(), a.c_str());
     else
         printf("%s is not a rotation of %s. \n", b.c_str(), a.c_str());
+    
+    return 0;
 }
