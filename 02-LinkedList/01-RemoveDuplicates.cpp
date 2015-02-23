@@ -115,7 +115,7 @@ int main()
     LinkedList* ls = new LinkedList();
     
     for (int i = 0; i < 10; i++) {
-        ls->appendToTail(rand() % 7);
+        ls->appendToTail(rand() % 9);
     }
     
     ls->printAll();
