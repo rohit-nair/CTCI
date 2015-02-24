@@ -107,6 +107,29 @@ class LinkedList {
     
     void deleteAll() { head->deleteAll(); }
 
+    Node* nthElement(int n)
+    {
+        int i = 0;
+        Node* current = head;
+        Node* runner = head;
+
+        while (i < n) {
+            runner = runner->next;
+            i++;
+            if (runner == NULL) {
+                printf("List has less than %d elements.\n", n);
+                return runner;
+            }
+        }
+
+        while (runner != NULL) {
+            runner = runner->next;
+            current = current->next;
+        }
+
+        return current;
+    }
+
     
 };
 
@@ -114,11 +137,17 @@ int main()
 {
     LinkedList* ls = new LinkedList();
     
-    for (int i = 0; i < 10; i++) {
-        ls->appendToTail(rand() % 9);
+    srand(time(0));
+    for (int i = 0; i < 15; i++) {
+        ls->appendToTail(rand() % 25);
     }
-    
+
     ls->printAll();
+    
+    Node* nthElement = ls->nthElement(25);
+    if (nthElement != NULL)
+        printf("%dth element from end is %d.\n", 3, nthElement->data);
+    
     ls->RemoveDuplicates();
     ls->printAll();
     
