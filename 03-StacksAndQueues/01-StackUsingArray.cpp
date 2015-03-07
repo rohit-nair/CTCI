@@ -1,5 +1,49 @@
 #include <iostream>
 
+class LinkedStack {
+    class Node {
+    public:
+        int data;
+        Node* next;
+        Node() {}
+        Node(int d) { data = d; }
+    };
+    
+public:
+    Node* head;
+    
+    void Push(int data) {
+        Node* item = new Node(data);
+        if (this->head == NULL) {
+            this->head = item;
+            return;
+        }
+        item->next = this->head;
+        this->head = item;
+    }
+    
+    int Pop() {
+        if (this->head == NULL) {
+            return -1;
+        }
+        
+        Node* temp = this->head;
+        this->head = temp->next;
+        int valToReturn = temp->data;
+        delete temp;
+        return valToReturn;
+    }
+    
+    int Peek() {
+        if (this->head == NULL) {
+            return -1;
+        }
+        return this->head->data;
+    }
+    
+    
+};
+
 class Item {
     public:
     int data;
@@ -15,18 +59,18 @@ class Item {
 class Stack {
     static const int NUMBER_STACKS = 3;
     int currentIdx = 0;
+    int currentFreeSpaceIdx = 0;
     int stackLastIdx[NUMBER_STACKS] = { -1, -1, -1 };
     Item* stack[300] = { };
+    LinkedStack freeSpace;
 
 
     public:
     void Push(int item, int stackIdx) {
-
+        int positionToInsert = freeSpace.Peek() != -1 ? freeSpace.Pop() : currentIdx++;
         Item* task = new Item(item, stackLastIdx[stackIdx]);
-        stack[currentIdx] = task;
-        stackLastIdx[stackIdx] = currentIdx++;
-
-
+        stack[positionToInsert] = task;
+        stackLastIdx[stackIdx] = positionToInsert;
     }
 
     int Pop(int stackIdx) {
@@ -39,6 +83,7 @@ class Stack {
         stackLastIdx[stackIdx] = itemToPop->indexPrevItem;
         int returnVal = itemToPop->data;
         delete itemToPop;
+        freeSpace.Push(idxToPop);
         return returnVal;
     }
 };
@@ -70,6 +115,9 @@ int main() {
         if (res3 != -1) {
             res3 = taskList.Pop(2);
             c += std::to_string(res3) + ",";
+        }
+        if (res1 == -1 && res2 == -1 && res3 == -1){
+            break;
         }
     }
     printf("Stack 1: %s.\n", a.c_str());
