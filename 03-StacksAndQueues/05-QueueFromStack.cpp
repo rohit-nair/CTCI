@@ -11,6 +11,10 @@ class Stack {
             value = d;
         }
         
+        ~Item() {
+            next = NULL;
+        }
+        
         int value;
         Item* next;
     };
@@ -19,10 +23,10 @@ class Stack {
     public:
     void Push(int data) {
         Item* newItem = new Item(data);
-        if (top != NULL) {
-            newItem->next = top;
+        if (this->top != NULL) {
+            newItem->next = this->top;
         }
-        top = newItem;
+        this->top = newItem;
     }
 
     int Peek() {
@@ -33,13 +37,12 @@ class Stack {
     }
 
     int Pop() {
-        if (top == NULL)
-            return -1;
-        Item* temp = top;
-        int valueToReturn = temp->value;
-        top = temp->next;
-        delete temp;
-        return valueToReturn;
+        Item* toPop = this->top;
+        if (toPop ==  NULL) return -1;
+        int toReturn = toPop->value;
+        this->top = toPop->next;
+        delete toPop;
+        return toReturn;
     }
 
 };
@@ -53,6 +56,11 @@ class Queue {
     Queue() {
         pushStack = new Stack();
         popStack = new Stack();
+    }
+    
+    ~Queue() {
+        pushStack = NULL;
+        popStack = NULL;
     }
 
     void Enqueue (int value) {
@@ -69,9 +77,11 @@ class Queue {
         }
 
         int valueToReturn = popStack->Pop();
+        int val = -1;
 
         while (popStack->Peek() != -1) {
-            pushStack->Push(popStack->Pop());
+            val = popStack->Pop();
+            pushStack->Push(val);
         }
 
         return valueToReturn;
@@ -80,7 +90,7 @@ class Queue {
 
 
 int main() {
-    int items = 5;
+    int items = 15;
     int itemToQueue;
     Queue que;
 
