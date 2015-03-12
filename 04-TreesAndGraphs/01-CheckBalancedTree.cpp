@@ -129,6 +129,10 @@ class Tree {
         }
         return level;
     }
+    
+    bool IsBalanced() {
+        return MaxLevel() - MinLevel() <= 1;
+    }
 };
 
 
@@ -147,6 +151,8 @@ int main() {
     binaryTree->Print();
     
     printf("Min depth: %d \t Max depth: %d.\n", binaryTree->MinLevel(), binaryTree->MaxLevel());
+    
+    printf("Is tree balanced: %s.\n", binaryTree->IsBalanced() ? "True" : "False");
 
     delete binaryTree;
 }
