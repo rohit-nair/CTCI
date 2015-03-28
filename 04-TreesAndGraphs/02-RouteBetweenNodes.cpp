@@ -7,17 +7,6 @@
 
 const int NUMBER_VERTICES = 5;
 
-class Vertex {
-public:
-    int value;
-    bool visited;
-    
-    Vertex() {
-        value = -1;
-        visited = false;
-    }
-};
-
 class Queue {
     private:
         class Node {
@@ -92,29 +81,37 @@ void printAll(int** matrix) {
 }
 
 // Performs depth first search.
-bool doesRouteExistsDFS(int** matrix, int fNode, int tNode) {
+bool doesRouteExistsDFS(int** matrix, bool visited[], int fNode, int tNode) {
     if (matrix[fNode][tNode] == 1) {
         return true;
     }
+    if (visited[fNode])
+        return false;
     
     for (int i = 0; i<NUMBER_VERTICES; i++) {        
         if (matrix[fNode][i]==1) {
-            bool res = doesRouteExistsDFS(matrix, i, tNode);
+            bool res = doesRouteExistsDFS(matrix, visited, i, tNode);
             if (res == true) {
                 return true;
             }
         }
     }
-
+    
+    visited[fNode] = true;
     return false;
 }
 
 // Performs depth first search.
 bool doesRouteExistsBFS(int** matrix, int fNode, int tNode) {
     Queue que;
+    bool visited[NUMBER_VERTICES] = {};
     que.Enqueue(fNode);
+    
     while (que.Peek() != -1) {
         int curNode = que.Dequeue();
+        if (visited[curNode])
+            continue;
+        
         if (matrix[curNode][tNode] == 1) {
             return true;
         }
@@ -124,6 +121,7 @@ bool doesRouteExistsBFS(int** matrix, int fNode, int tNode) {
                 que.Enqueue(i);
             }
         }
+        visited[curNode] = true;
     }
     
     return false;
@@ -150,21 +148,28 @@ int main() {
     
     while (cont == 'y') {
         std::cout << "Enter nodes for which to check for route:";
-        std::cin >> fromNode;
-        std::cin >> toNode;
+        if (!(std::cin >> fromNode) || !(std::cin >> toNode))
+            break;
+        else if ((fromNode > NUMBER_VERTICES-1 || fromNode < 0) ||
+                 (toNode > NUMBER_VERTICES || toNode < 0))
+        {
+            std::cout << "Invalid input.\n";
+            break;
+        }
     
         if (fromNode == toNode)
             std::cout << "Route exists.\n";
         else {
-            bool res = doesRouteExistsDFS(adjMatrix, fromNode, toNode);
+            bool visited[NUMBER_VERTICES] = {};
+            bool res = doesRouteExistsDFS(adjMatrix, visited, fromNode, toNode);
             std::cout << "Route result: " << std::boolalpha << res << "\n";
     
             bool res1 = doesRouteExistsBFS(adjMatrix, fromNode, toNode);
             std::cout << "Route result: " << std::boolalpha << res1 << "\n";
         }
         
-        std::cout << "Do you want to continue? y/n \n";
-        std::cin >> cont;
+//        std::cout << "Do you want to continue? y/n \n";
+//        std::cin >> cont;
     }
 
     delete adjMatrix;
