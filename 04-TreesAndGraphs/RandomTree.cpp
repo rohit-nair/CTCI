@@ -56,10 +56,9 @@ void RandomTree::PrintAll() {
 
 }
 
-void RandomTree::Blossom() {
-    srand(time(0));
-
-    for (int i=1; i<15; i++) {
+void RandomTree::Blossom(int nodes) {
+//    srand(time(0));
+    for (int i=0; i<nodes; i++) {
         int val = rand() % 11;
         if (Root == NULL) {
             Root = new Node(val);

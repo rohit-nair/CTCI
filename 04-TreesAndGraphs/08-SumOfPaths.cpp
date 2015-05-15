@@ -37,10 +37,11 @@ void PrintPathsEquallingSum(int checkSum, RandomTree* tree){
     PrintPathsEquallingSum(tree->Root, ledger, checkSum);
 }
 
+const int NODES_COUNT = 20;
 
 int main() {
     RandomTree* tree = new RandomTree();
-    tree->Blossom();
+    tree->Blossom(NODES_COUNT);
 
     tree->PrintAll();
     int checkSum = 0;

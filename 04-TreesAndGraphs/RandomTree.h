@@ -15,6 +15,6 @@ class RandomTree {
     public:
     Node* Root = NULL;
     void PrintAll();
-    void Blossom();
+    void Blossom(int nodes);
     Node* FindNode(int value);
 };
